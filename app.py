@@ -1,19 +1,27 @@
-from flask import Flask, render_template
+# Libraries
+from flask import Flask, render_template, g, request
 import sqlite3
+
+# Files
+import NLP
+
 
 app = Flask(__name__)
 
-# current_Directory = os.path.dirname(os.path.abspath(__file__))
+#Routes
+app.add_url_rule('/', view_func=NLP.index)
 
 
-@app.route('/')
-def index():
-    return render_template('index.html')
+# Database setup
+@app.before_request
+def before_request():
+    g.db = sqlite3.connect('./data/data.sqlite')
+    g.db.row_factory = sqlite3.Row
 
-@app.route('/view')
-def view():
-    return render_template('view.html')
-
+@app.teardown_request
+def teardown_request(exception):
+    if hasattr(g, 'db'):
+        g.db.close()
 
 
 if __name__ == '__main__':

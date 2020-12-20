@@ -2,8 +2,14 @@
 
 {% block head %} 
 <h1>Welcome to Home!</h1>
+
 {% endblock %}
 
 {% block body %} 
+
+{% for d in data %}
+    {{d['Name']}} {{d['Content']}}
+{% endfor %}
+
 
 {% endblock %}
