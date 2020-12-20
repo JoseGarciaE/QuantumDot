@@ -1,14 +1,27 @@
 {% extends 'base.html' %}
 
 {% block head %} 
-<h1>Welcome to Home!</h1>
+<h1>Welcome to NLP!</h1>
 
 {% endblock %}
 
 {% block body %} 
 
-{% for d in data %}
-    {{d['Name']}} {{d['Content']}}
+<div name='article upload'>
+    <h4>UPLOAD NEW ARTICLE</h4>
+    <form method='POST' enctype='multipart/form-data'>
+        <input type='text' placeholder='Title of Article' name='input'>
+        <input type='file' name='file'>
+        <br>
+    <button name='button' value='file_upload'>Upload</button>
+    </form>
+</div>
+
+<hr>
+
+{% for article in articles %}
+    {{article['Name']}} 
+    <hr>
 {% endfor %}
 
 

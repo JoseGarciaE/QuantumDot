@@ -1,7 +1,7 @@
 DROP TABLE Articles
 
 CREATE TABLE Articles (
-    Name VARCHAR(30),
+    Name LONGTEXT,
     Content LONGTEXT
 );
 
