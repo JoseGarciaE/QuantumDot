@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<h1>Welcome to View!</h1>
+    <h1>{{article['Name']}}</h1>
+    <h3>Click <a href="/">here</a> to return</h3>
 {% endblock %}
 
 {% block body %}
+
+{{article['Content']}}
 
 {% endblock %}

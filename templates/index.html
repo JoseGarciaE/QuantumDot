@@ -1,28 +1,36 @@
 {% extends 'base.html' %}
 
 {% block head %} 
-<h1>Welcome to NLP!</h1>
+<h1>Natural Language Processing with spaCy!</h1>
 
 {% endblock %}
 
 {% block body %} 
 
-<div name='article upload'>
-    <h4>UPLOAD NEW ARTICLE</h4>
+<div>
     <form method='POST' enctype='multipart/form-data'>
-        <input type='text' placeholder='Title of Article' name='input'>
-        <input type='file' name='file'>
-        <br>
-    <button name='button' value='file_upload'>Upload</button>
+        <h4>Upload new article</h4>
+            <input type='text' placeholder='Title of Article' name='input' style="width: 25%;" class="form-control input-sm">
+            <br><input type='file' name='file'><br>
+        <button name='button' value='file_upload' class="btn btn-info btn-sm">Upload</button>
     </form>
 </div>
 
 <hr>
 
-{% for article in articles %}
-    {{article['Name']}} 
-    <hr>
-{% endfor %}
-
+<div>
+    <form method='POST'>
+        <h4>Select an article</h4>
+        <select name='select_article' multiple class="form-control" style="width: 50%;" >
+            <option value=''></option>
+            {% for article in articles %}
+                <option value="{{article['Name']}}">{{article['Name']}}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <button name='button' value='view_article' class="btn btn-info btn-sm">View</button>
+        <button name='button' value='delete_article' class="btn btn-info btn-sm">Delete</button>
+    </form>
+</div>
 
 {% endblock %}
