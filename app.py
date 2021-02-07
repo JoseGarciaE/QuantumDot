@@ -6,6 +6,7 @@ import sqlite3
 import NLP
 
 app = Flask(__name__)
+
 #Routes
 app.add_url_rule('/', methods=['GET', 'POST'], view_func=NLP.index)
 

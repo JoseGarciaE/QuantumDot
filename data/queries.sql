@@ -1,4 +1,4 @@
-DROP TABLE Articles
+DROP TABLE Articles;
 
 CREATE TABLE Articles (
     Name LONGTEXT,

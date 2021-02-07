@@ -1,12 +1,18 @@
 from flask import Flask, render_template, g, request
 import os
 
+app = Flask(__name__)
+app.config['UPLOAD_PATH'] = './data/uploads'
 
 def handle_file_upload():
-    article_name = request.form['input']
     uploaded_file = request.files['file']
+    article_name = request.form['input']
+
+    uploaded_file.save(os.path.join(app.config['UPLOAD_PATH'], article_name))
+
     file_content = uploaded_file.stream.read()
 
+    
     g.db.execute('INSERT INTO Articles VALUES (?,?)', [article_name, file_content])
     g.db.commit()
 
@@ -17,6 +23,8 @@ def get_Article(name):
     return g.db.execute('SELECT * FROM Articles WHERE Name = ?', [name]).fetchone()
 
 def delete_Article(name):
+    os.remove(os.path.join(app.config['UPLOAD_PATH'], name))
+
     g.db.execute('DELETE FROM Articles WHERE Name = ?', [name])
     g.db.commit()    
 
