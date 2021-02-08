@@ -2,11 +2,14 @@
 
 {% block head %}
     <h1>{{article['Name']}}</h1>
-    <h3>Click <a href="/">here</a> to return</h3>
+    <h3><a href="/">Return</a> to home page</h3>
 {% endblock %}
 
 {% block body %}
 
-{{article['Content']}}
+<div id="article">
+    <h3>Click <strong style="color: red; cursor: pointer;">here</strong> to toggle article</h3> 
+    <p id="content">{{article['Content']}}</p>
+</div>
 
 {% endblock %}
